@@ -35,7 +35,7 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Usuario client;
-
+	/*id.order vem de "id" da Classe OrderItem e "order" da classe OrderItemPK*/
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 	
