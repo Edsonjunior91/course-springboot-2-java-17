@@ -23,7 +23,7 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String email;
-	private String nome;
+	private String name;
 	private String phone;
 	private String password;
 	
@@ -34,11 +34,11 @@ public class Usuario implements Serializable{
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String email, String nome, String phone, String password) {
+	public Usuario(Long id, String email, String name, String phone, String password) {
 		super();
 		this.id = id;
 		this.email = email;
-		this.nome = nome;
+		this.name = name;
 		this.phone = phone;
 		this.password = password;
 	}
@@ -59,12 +59,12 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPhone() {

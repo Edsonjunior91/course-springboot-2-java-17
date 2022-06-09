@@ -23,4 +23,9 @@ public class UsuarioService {
 		Optional<Usuario> obj = repository.findById(id);
 		return obj.get();
 	}
+	/*Operação para salvar no banco de dados um usuário*/
+	public Usuario insert(Usuario obj) {
+		return repository.save(obj);
+	}
+	
 }
