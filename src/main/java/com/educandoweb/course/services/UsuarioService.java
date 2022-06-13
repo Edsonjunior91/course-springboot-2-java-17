@@ -3,6 +3,8 @@ package com.educandoweb.course.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -43,12 +45,20 @@ public class UsuarioService {
 	}
 	/**/
 	public Usuario update(Long id, Usuario obj) {
-		/*getone vai instanciar um usuário só que não vai no banco de dados ainda
-		 * ele vai só deixar o objeto monitorado pelo JPA, para poder trabalhar com ele
-		 * e em seguida é possivel efetuar alguma operação com o Banco de Dados*/
-		Usuario entity = repository.getOne(id);
-		updateData(entity, obj);
-		return repository.save(entity);
+		try {
+			/*getone vai instanciar um usuário só que não vai no banco de dados ainda
+			 * ele vai só deixar o objeto monitorado pelo JPA, para poder trabalhar com ele
+			 * e em seguida é possivel efetuar alguma operação com o Banco de Dados*/
+			Usuario entity = repository.getOne(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+		/*Testando Exceção para saber qual codigo de erro esta retornando em uma exceção
+		 * }catch(RuntimeException e) {
+			e.printStackTrace();
+		}*/
 	}
 
 	private void updateData(Usuario entity, Usuario obj) {
